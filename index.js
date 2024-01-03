@@ -14,9 +14,9 @@ const axios = require('axios');
         } else{
          let response = await axios.default.get(validator.arr[1]);
          console.log( 'Status Code:' + response.status);
+         console.log(response.data);
          }
     } while (true);
-
 }
 
 main()
