@@ -24,9 +24,11 @@ function validateInput(input){
     });
     for(var optionInput in optionInput){
         if(!options.has(optionInput)){
-            console.log(`${optionInput}  is not recognized`)
+            console.log(`${optionInput}  is not recognized`);
+            return;
         }
     }
+    
     return {
         valid: true,
         arr: inputArr
