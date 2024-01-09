@@ -5,7 +5,7 @@ const options =  new Map([
     ['-n','number of request']
 ])
 
-function parseCommandLineString(input){
+function validateInput(input){
     let optionObj = {
         '-u': '',
         '-n': 10
