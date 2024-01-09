@@ -1,13 +1,13 @@
 
 /*  */
 const options =  new Map([
-    ['-u','specify the url']
+    ['-u','specify the url'],
     ['-n','number of request']
 ])
 
-function validateInput(input){
+function parseCommandLineString(input){
     let optionObj = {
-        '-u': null,
+        '-u': '',
         '-n': 10
     };
     let inputArr = input.split(' ');
@@ -20,13 +20,14 @@ function validateInput(input){
     let optionInputs = inputArr.filter((input, index)=>{
         return input[0] == '-';
     });
-    for(var optionInput in optionInputs){
-        if(!options.has(optionInput)){
-            throw new Error(`${optionInput}  is not a recognized option`);
+ 
+   for (let i = 0; i < optionInputs.length; i++) {
+        if(!options.has(optionInputs[i])){
+            throw new Error(`${optionInputs[i]}  is not a recognized option`);
         }
     }
     for (let i = 0; i < inputArr.length; i++) {
-        if(optionInput.has(inputArr[i])){
+        if(options.has(inputArr[i])){
             optionObj[inputArr[i]] = inputArr[i+1];
         }
     }
@@ -36,7 +37,6 @@ function validateInput(input){
     
     return optionObj;
 }
-
 
 
 module.exports = validateInput;

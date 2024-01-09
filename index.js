@@ -7,15 +7,20 @@ const axios = require('axios');
     
     do {
        command = prompt('%'); 
-        const validator = inputValidator(command);
-        const isValid = validator.valid;
-        if(!isValid){
-            console.log(`${command} is not recognized \n`)
-        } else{
+       try{
+         const validator = inputValidator(command);
+         for (let i = 0; i < validator['-n']; i++) {
+           
+         }
          let response = await axios.default.get(validator.arr[1]);
          console.log( 'Status Code:' + response.status);
          console.log(response.data);
-         }
+        
+       } catch(e){
+            console.log(e);
+      
+        }
+      
     } while (true);
 }
 
