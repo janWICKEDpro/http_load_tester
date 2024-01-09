@@ -2,13 +2,15 @@
 /*  */
 const options =  new Map([
     ['-u','specify the url'],
-    ['-n','number of request']
+    ['-n','number of request'],
+    ['-c','number of concurrent']
 ])
 
 function validateInput(input){
     let optionObj = {
         '-u': '',
-        '-n': 10
+        '-n': 10,
+        '-c': 1
     };
     let inputArr = input.split(' ');
     if(inputArr.length <=1){
@@ -20,7 +22,7 @@ function validateInput(input){
     let optionInputs = inputArr.filter((input, index)=>{
         return input[0] == '-';
     });
- 
+
    for (let i = 0; i < optionInputs.length; i++) {
         if(!options.has(optionInputs[i])){
             throw new Error(`${optionInputs[i]}  is not a recognized option`);
@@ -34,9 +36,11 @@ function validateInput(input){
     if(!optionObj['-u']) throw new Error('Invalid input: -u missing');
 
     optionObj['-n'] = parseInt(optionObj['-n'], 10);
-    
+   // optionObj['-c'] = parseInt(optionObj['-c'], 1);
+    console.log(optionObj);
     return optionObj;
 }
+
 
 
 module.exports = validateInput;
