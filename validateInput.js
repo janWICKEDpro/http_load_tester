@@ -6,28 +6,26 @@ const options =  new Map([
 ])
 
 function validateInput(input){
+    let options = {
+        'u': null,
+        'n': 10
+    };
     let inputArr = input.split(' ');
     if(inputArr.length <=1){
-        return {
-            valid: false,
-            arr: inputArr
-        };
+        throw new Error('Invalid command');
     }
     if(inputArr[0] != 'ccload'){
-        return {
-            valid: false,
-            arr: inputArr
-        };
+        throw new Error(`Invalid: ${inputArr[0]} is not recognized`);
     }
     let optionInputs = inputArr.filter((input, index)=>{
         return input[0] == '-';
     });
     for(var optionInput in optionInput){
         if(!options.has(optionInput)){
-            console.log(`${optionInput}  is not recognized`);
-            return;
+            throw new Error(`${optionInput}  is not a recognized option`);
         }
     }
+    
     
     return {
         valid: true,
