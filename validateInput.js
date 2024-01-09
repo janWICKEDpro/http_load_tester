@@ -6,9 +6,9 @@ const options =  new Map([
 ])
 
 function validateInput(input){
-    let options = {
-        'u': null,
-        'n': 10
+    let optionObj = {
+        '-u': null,
+        '-n': 10
     };
     let inputArr = input.split(' ');
     if(inputArr.length <=1){
@@ -20,17 +20,21 @@ function validateInput(input){
     let optionInputs = inputArr.filter((input, index)=>{
         return input[0] == '-';
     });
-    for(var optionInput in optionInput){
+    for(var optionInput in optionInputs){
         if(!options.has(optionInput)){
             throw new Error(`${optionInput}  is not a recognized option`);
         }
     }
+    for (let i = 0; i < inputArr.length; i++) {
+        if(optionInput.has(inputArr[i])){
+            optionObj[inputArr[i]] = inputArr[i+1];
+        }
+    }
+    if(!optionObj['-u']) throw new Error('Invalid input: -u missing');
+
+    optionObj['-n'] = parseInt(optionObj['-n'], 10);
     
-    
-    return {
-        valid: true,
-        arr: inputArr
-    };
+    return optionObj;
 }
 
 
