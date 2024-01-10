@@ -9,7 +9,6 @@ const makeRequest = require('./make_request');
     let failures = 0;
     do {
        command = prompt('%'); 
-
        
        try{
          const validator = inputValidator(command);
@@ -32,7 +31,9 @@ const makeRequest = require('./make_request');
         const results = await Promise.all(promises);
 
         results.forEach((batchResult) => {
+            console.log(batchResult);
             batchResult.forEach((result) => {
+                console.log(result.status);
               if (result.status === 'fulfilled') {
                 successes++;
               } else {
