@@ -12,7 +12,7 @@ const makeRequest = require('./make_request');
        
        try{
          const validator = inputValidator(command);
-         console.log(`Sending ${validator['-n']} requests with ${validator['-c']} concurrent requests to ${validator['-u']}`);
+         console.log(`Sending ${validator['-n']} requests with ${validator['-c']} concurrent to ${validator['-u']}`);
 
         const promises = [];
          for (let index = 0; index < validator['-n']; index +=  validator['-c']) {
@@ -22,11 +22,7 @@ const makeRequest = require('./make_request');
             }
             promises.push(Promise.allSettled(batch));
         }
-        //  for (let i = 0; i < validator['-n']; i++) {
-        //     let response = await axios.default.get(validator['-u']);
-        //     console.log( 'Status Code:' + response.status);
-        //     console.log(response.data);
-        //  }
+      
 
         const results = await Promise.all(promises);
 
@@ -50,4 +46,4 @@ const makeRequest = require('./make_request');
     } while (true);
 }
 
-main()
+main();
