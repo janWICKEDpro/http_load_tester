@@ -19,7 +19,7 @@ function validateInput(input){
     if(inputArr[0] != 'ccload'){
         throw new Error(`Invalid: ${inputArr[0]} is not recognized`);
     }
-    let optionInputs = inputArr.filter((input, index)=>{
+    let optionInputs = inputArr.filter((input)=>{
         return input[0] == '-';
     });
 
@@ -33,10 +33,10 @@ function validateInput(input){
             optionObj[inputArr[i]] = inputArr[i+1];
         }
     }
-    if(!optionObj['-u']) throw new Error('Invalid input: -u missing');
+    if(!optionObj['-u']) throw new Error('Invalid Input: -u missing');
 
     optionObj['-n'] = parseInt(optionObj['-n'], 10);
-   // optionObj['-c'] = parseInt(optionObj['-c'], 1);
+   
     console.log(optionObj);
     return optionObj;
 }
