@@ -36,8 +36,6 @@ function validateInput(input){
     if(!optionObj['-u']) throw new Error('Invalid Input: -u missing');
 
     optionObj['-n'] = parseInt(optionObj['-n'], 10);
-   
-    console.log(optionObj);
     return optionObj;
 }
 
